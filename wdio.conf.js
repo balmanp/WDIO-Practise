@@ -6,10 +6,10 @@ exports.config = {
     exclude: [],
     maxInstances: 10,
     capabilities: [{
-        browserName: 'chrome'
-        // 'goog:chromeOptions': {
-        //     args: ['headless', 'disable-gpu']
-        // }
+        browserName: 'chrome',
+        'goog:chromeOptions': {
+            args: ['headless', 'disable-gpu']
+        }
     }],
     logLevel: 'info',
     bail: 0,
@@ -24,12 +24,19 @@ exports.config = {
             {
                 outputDir: 'allure-results',
                 disableWebdriverStepsReporting: true,
-                disableWebdriverScreenshotsReporting: true,
+                disableWebdriverScreenshotsReporting: false,
             }
         ]
     ],
     mochaOpts: {
         ui: 'bdd',
         timeout: 60000
+    },
+    // Add afterTest hook
+    afterTest: async function (test, context, { error, result, duration, passed, retries }) {
+        if (error) {
+            // Capture screenshot if test fails
+            await browser.takeScreenshot();
+        }
     }
 };
