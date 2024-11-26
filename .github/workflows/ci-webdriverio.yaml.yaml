@@ -9,7 +9,7 @@ jobs:
   build:
     strategy:
       matrix:
-        node-version: [14, 16, 18]  # Menjalankan pengujian di beberapa versi Node.js
+        node-version: [20, 21, 22]  # Menjalankan pengujian di beberapa versi Node.js
         os: [ubuntu-latest, windows-latest, macos-latest]  # Menjalankan pengujian di berbagai OS
     
     runs-on: ${{ matrix.os }}  # Menentukan sistem operasi yang digunakan berdasarkan matrix
