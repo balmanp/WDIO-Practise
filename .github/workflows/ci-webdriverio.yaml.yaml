@@ -1,4 +1,4 @@
-name: WebDriverIO CI with Allure Report
+name: WebDriverIO CI with Allure Report (Windows)
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Menjalankan pekerjaan ini di Ubuntu Latest
+    runs-on: windows-latest  # Menjalankan pekerjaan ini di Windows Latest
 
     steps:
       - name: Checkout code
@@ -27,11 +27,9 @@ jobs:
       - name: Run WebDriverIO tests
         run: npx wdio  # Jalankan pengujian WebDriverIO menggunakan spec reporter
 
-      - name: Install Allure CLI
+      - name: Install Allure CLI (Windows)
         run: |
-          curl -o allure.zip -L "https://github.com/allure-framework/allure2/releases/download/2.18.1/allure-2.18.1.zip"
-          unzip allure.zip -d allure
-          sudo mv allure/allure-2.18.1 /usr/local/bin/allure
+          choco install allure -y  # Menginstal Allure di Windows menggunakan Chocolatey
           allure --version  # Verifikasi bahwa Allure terpasang dengan benar
 
       - name: Generate Allure report
