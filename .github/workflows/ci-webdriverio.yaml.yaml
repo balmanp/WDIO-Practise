@@ -3,26 +3,31 @@ name: WebDriverIO CI
 on:
   push:
     branches:
-      - main
+      - main  # Workflow ini akan berjalan setiap kali ada push ke branch main
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20, 21, 22]  # Menjalankan pengujian di beberapa versi Node.js
+        os: [ubuntu-latest, windows-latest, macos-latest]  # Menjalankan pengujian di beberapa OS
+    
+    runs-on: ${{ matrix.os }}  # Menentukan sistem operasi yang digunakan berdasarkan matrix
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3  # Mengambil kode dari repositori
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: ${{ matrix.node-version }}  # Menggunakan versi Node.js dari matrix
 
       - name: Install dependencies
-        run: npm install
+        run: npm install  # Instalasi dependensi di package.json
 
       - name: Fix permissions
-        run: chmod +x ./node_modules/.bin/wdio
+        run: chmod +x ./node_modules/.bin/wdio  # Memperbaiki izin untuk menjalankan wdio
 
       - name: Run WebDriverIO tests
-        run: npx wdio
+        run: npx wdio  # Jalankan pengujian WebDriverIO menggunakan spec reporter
