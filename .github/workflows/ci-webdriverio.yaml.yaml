@@ -3,7 +3,7 @@ name: WebDriverIO CI
 on:
   push:
     branches:
-      - main  # Jalankan workflow hanya pada push ke branch main
+      - main
 
 jobs:
   build:
@@ -11,15 +11,18 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3  # Tarik kode dari repositori
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 22  # Sesuaikan versi Node.js dengan kebutuhan Anda
+          node-version: 18
 
       - name: Install dependencies
-        run: npm install  # Install dependensi Node.js
+        run: npm install
+
+      - name: Fix permissions
+        run: chmod +x ./node_modules/.bin/wdio
 
       - name: Run WebDriverIO tests
-        run: npx wdio  # Jalankan tes menggunakan WebDriverIO
+        run: npx wdio
