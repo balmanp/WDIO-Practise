@@ -12,7 +12,7 @@ describe("Swaglabs_test", () => {
     await browser.$("aria/Password").click()
     await browser.$("aria/Password").setValue("secret_sauce")
     await browser.$("#login-button").click()
-    await expect(browser).toHaveUrl("https://www.saucedemo.com/v2/inventory.html")
+    await expect(browser).toHaveUrl("https://www.saucedemo.com/v1/inventory.html")
     await browser.$("//*[@id=\"inventory_container\"]/div/div[4]/div[3]/button").click()
     await browser.$("//*[@id=\"inventory_container\"]/div/div[5]/div[3]/button").click()
     await browser.$("//*[@id=\"inventory_container\"]/div/div[1]/div[3]/button").click()
