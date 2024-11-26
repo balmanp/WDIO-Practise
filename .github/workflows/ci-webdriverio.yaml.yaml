@@ -1,0 +1,25 @@
+name: WebDriverIO CI
+
+on:
+  push:
+    branches:
+      - main  # Jalankan workflow hanya pada push ke branch main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3  # Tarik kode dari repositori
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22  # Sesuaikan versi Node.js dengan kebutuhan Anda
+
+      - name: Install dependencies
+        run: npm install  # Install dependensi Node.js
+
+      - name: Run WebDriverIO tests
+        run: npx wdio  # Jalankan tes menggunakan WebDriverIO
