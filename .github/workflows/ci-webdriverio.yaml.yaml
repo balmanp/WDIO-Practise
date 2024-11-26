@@ -9,7 +9,7 @@ jobs:
   build:
     strategy:
       matrix:
-        node-version: [22, 20, 21]  # Menjalankan pengujian di beberapa versi Node.js
+        node-version: [20, 21, 22]  # Menjalankan pengujian di beberapa versi Node.js
         os: [ubuntu-latest, windows-latest, macos-latest]  # Menjalankan pengujian di berbagai OS
     
     runs-on: ${{ matrix.os }}  # Menentukan sistem operasi yang digunakan berdasarkan matrix
@@ -37,7 +37,7 @@ jobs:
         run: |
           curl -o allure.zip -L "https://github.com/allure-framework/allure2/releases/download/2.18.1/allure-2.18.1.zip"
           unzip allure.zip -d allure
-          sudo mv allure /usr/local/bin
+          sudo mv allure/allure-2.18.1 /usr/local/bin/allure
           allure --version  # Verifikasi bahwa Allure terpasang dengan benar
           
       - name: Install Allure CLI (Windows)
