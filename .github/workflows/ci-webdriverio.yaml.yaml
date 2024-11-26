@@ -31,3 +31,13 @@ jobs:
 
       - name: Run WebDriverIO tests
         run: npx wdio  # Jalankan pengujian WebDriverIO menggunakan spec reporter
+        
+      - name: Generate Allure Report
+        run: |
+          allure generate ./allure-results --clean  # Membuat laporan Allure
+
+      - name: Upload Allure Report as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report
+          path: ./allure-report  # Folder hasil laporan Allure yang dihasilkan
