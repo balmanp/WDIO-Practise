@@ -67,7 +67,7 @@ describe("Swaglabs Test Suite", () => {
         // Mengisi informasi checkout
         const checkoutData = {
             firstName: "User101",
-            lastName: "Jdid",
+            lastName: "Doodle",
             postalCode: "123456"
         };
 
