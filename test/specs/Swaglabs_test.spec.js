@@ -49,6 +49,6 @@ describe("Swaglabs_test", () => {
     await browser.$('input[type="submit"][value="CONTINUE"]').click()
     await expect(browser).toHaveUrl("https://www.saucedemo.com/v1/checkout-step-two.html")
     await browser.$("aria/FINISH").click()
-    await expect(browser).toHaveUrl("https://www.saucedemo.com/v1/checkout-complete.html")
+    await expect(browser).toHaveUrl("https://www.saucedemo.com/v2/checkout-complete.html")
   });
 });
