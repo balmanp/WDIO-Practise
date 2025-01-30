@@ -1,0 +1,28 @@
+name: WebDriverIO CI
+
+on:
+  push:
+    branches:
+      - main  
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Hanya dijalankan di Ubuntu
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3  # Mengambil kode dari repositori
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18  # Gunakan satu versi Node.js (bisa diubah sesuai kebutuhan)
+
+      - name: Install dependencies
+        run: npm install  # Instalasi dependensi dari package.json
+
+      - name: Fix permissions
+        run: chmod +x ./node_modules/.bin/wdio  # Memperbaiki izin eksekusi
+
+      - name: Run WebDriverIO tests
+        run: npx wdio  # Jalankan pengujian WebDriverIO
